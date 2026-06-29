@@ -3,6 +3,9 @@
 build/
 **/build/
 
+# Allow root-level release APK
+!CardStack.apk
+
 # Local config — contains machine-specific SDK path
 local.properties
 

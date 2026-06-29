@@ -21,6 +21,7 @@
   <img src="https://img.shields.io/badge/DI-Hilt-E91E63?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/DB-Room-FF6F00?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/Auth-BiometricPrompt-1565C0?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/License-Personal%20Use%20Only-red?style=for-the-badge"/>
 </p>
 
 ---
@@ -169,7 +170,55 @@ app/src/main/java/com/cardstack/app/
 
 ---
 
-## Personal Use
+## Contributing
 
-This app is built for personal use and is not published on the Play Store.  
-Feel free to fork and adapt it for your own needs.
+Contributions are welcome! This is a personal project, but if you have ideas for improvements or find bugs, feel free to get involved.
+
+### How to contribute
+
+1. **Fork** the repository
+2. **Create a branch** for your feature or fix
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. **Make your changes** — keep them focused and minimal
+4. **Build and test** on a real device before submitting
+   ```bash
+   .\gradlew.bat assembleDebug
+   adb install -r app\build\outputs\apk\debug\app-debug.apk
+   ```
+5. **Open a Pull Request** with a clear description of what you changed and why
+
+### Good areas to contribute
+
+- Bug fixes
+- UI polish and accessibility improvements
+- New card gradient themes
+- Additional transaction categories
+- Widget for home screen due-date summary
+- Database encryption (SQLCipher integration)
+- Per-category reward rate overrides per card
+
+### Guidelines
+
+- One feature / fix per PR — keep diffs reviewable
+- Follow the existing MVVM pattern: one ViewModel per screen, one Composable per file
+- No new third-party dependencies without discussion — the goal is to keep the app lean
+- All data must remain local — no network calls, no telemetry
+
+> **Note on licensing:** By submitting a pull request, you agree that your contribution will be licensed under the same [personal use license](#license) as this project. Contributions cannot be used to circumvent the non-commercial restriction.
+
+---
+
+## License
+
+```
+CardStack Personal Use License — Copyright (c) 2026 Abhijat Chaturvedi
+```
+
+**Free for personal, non-commercial use.** You may use, fork, and modify this software for your own private purposes.
+
+**Commercial use is not permitted.** This includes selling the app, bundling it into a paid product, or using it to provide a paid service to others.
+
+See the full [LICENSE](LICENSE) file for details.  
+For commercial licensing enquiries: **abhijatchaturvedi@gmail.com**

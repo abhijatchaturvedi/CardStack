@@ -5,6 +5,10 @@ import android.view.WindowManager
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.*
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -18,7 +22,9 @@ import com.cardstack.app.ui.navigation.CardStackBottomBar
 import com.cardstack.app.ui.navigation.CardStackNavHost
 import com.cardstack.app.ui.navigation.bottomNavRoutes
 import com.cardstack.app.ui.theme.CardStackTheme
+import com.cardstack.app.ui.theme.ThemeChoice
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -37,7 +43,9 @@ class MainActivity : AppCompatActivity() {
 
     @Composable
     private fun CardStackApp() {
-        CardStackTheme {
+        val themeName by settings.themeChoiceFlow.collectAsStateWithLifecycle()
+        val themeChoice = ThemeChoice.valueOf(themeName)
+        CardStackTheme(themeChoice = themeChoice) {
             val biometricEnabled = settings.getBiometricEnabled()
             val lockTimeoutMillis = settings.getLockTimeoutMinutes() * 60_000L
 
@@ -93,8 +101,15 @@ class MainActivity : AppCompatActivity() {
             bottomBar = {
                 if (currentRoute in bottomNavRoutes) CardStackBottomBar(navController)
             }
-        ) { _ ->
-            CardStackNavHost(navController = navController)
+        ) { innerPadding ->
+            Box(
+                Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
+                    .consumeWindowInsets(innerPadding)
+            ) {
+                CardStackNavHost(navController = navController)
+            }
         }
     }
 

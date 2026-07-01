@@ -24,7 +24,6 @@ import com.cardstack.app.ui.common.color
 import com.cardstack.app.ui.common.displayName
 import com.cardstack.app.ui.common.icon
 import com.cardstack.app.ui.theme.IndigoAccent
-import com.cardstack.app.ui.theme.OnSurfaceSecondary
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -105,7 +104,7 @@ fun TransactionsScreen(
 
             if (state.transactions.isEmpty()) {
                 Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Text("No transactions yet", color = OnSurfaceSecondary)
+                    Text("No transactions yet", color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             } else {
                 LazyColumn(
@@ -181,7 +180,7 @@ private fun TransactionRow(
                 Text(
                     "$cardName · ${tx.category.displayName()}",
                     style = MaterialTheme.typography.bodySmall,
-                    color = OnSurfaceSecondary
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
 
@@ -194,7 +193,7 @@ private fun TransactionRow(
                 Text(
                     dateFmt.format(Instant.ofEpochMilli(tx.date)),
                     style = MaterialTheme.typography.bodySmall,
-                    color = OnSurfaceSecondary
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
 

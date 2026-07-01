@@ -16,7 +16,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.Image
 import com.cardstack.app.R
 import com.cardstack.app.ui.theme.IndigoAccent
-import com.cardstack.app.ui.theme.OnSurfaceSecondary
 
 @Composable
 fun LockScreen(onRetry: () -> Unit, errorMessage: String? = null) {
@@ -70,7 +69,7 @@ fun LockScreen(onRetry: () -> Unit, errorMessage: String? = null) {
                 Text(
                     "Touch the sensor to unlock",
                     style = MaterialTheme.typography.bodySmall,
-                    color = OnSurfaceSecondary
+                    color = Color(0xFF9E9EBD)
                 )
             }
         }

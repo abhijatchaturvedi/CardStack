@@ -23,7 +23,6 @@ import com.cardstack.app.data.db.TransactionCategory
 import com.cardstack.app.ui.common.displayName
 import com.cardstack.app.ui.theme.GreenDue
 import com.cardstack.app.ui.theme.IndigoAccent
-import com.cardstack.app.ui.theme.OnSurfaceSecondary
 
 @Composable
 fun RewardsScreen(viewModel: RewardsViewModel = hiltViewModel()) {
@@ -54,7 +53,7 @@ fun RewardsScreen(viewModel: RewardsViewModel = hiltViewModel()) {
                 ) {
                     Icon(Icons.Outlined.WorkspacePremium, null, tint = IndigoAccent, modifier = Modifier.size(36.dp))
                     Column {
-                        Text("Total Reward Value", style = MaterialTheme.typography.labelMedium, color = OnSurfaceSecondary)
+                        Text("Total Reward Value", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
                         Text(
                             "₹${"%,.0f".format(state.totalRewardInr)}",
                             style = MaterialTheme.typography.headlineMedium,
@@ -73,7 +72,7 @@ fun RewardsScreen(viewModel: RewardsViewModel = hiltViewModel()) {
 
         if (state.cards.isEmpty()) {
             item {
-                Text("No cards yet", color = OnSurfaceSecondary, style = MaterialTheme.typography.bodyMedium)
+                Text("No cards yet", color = MaterialTheme.colorScheme.onSurfaceVariant, style = MaterialTheme.typography.bodyMedium)
             }
         } else {
             items(state.cards, key = { it.card.id }) { summary ->
@@ -92,7 +91,7 @@ fun RewardsScreen(viewModel: RewardsViewModel = hiltViewModel()) {
             Text(
                 "Pick a spending category to see which card earns the most",
                 style = MaterialTheme.typography.bodySmall,
-                color = OnSurfaceSecondary
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
 
@@ -113,7 +112,7 @@ fun RewardsScreen(viewModel: RewardsViewModel = hiltViewModel()) {
         }
 
         if (state.bestCardResults.isEmpty()) {
-            item { Text("Add cards to see suggestions", color = OnSurfaceSecondary) }
+            item { Text("Add cards to see suggestions", color = MaterialTheme.colorScheme.onSurfaceVariant) }
         } else {
             itemsIndexed(state.bestCardResults) { index, result ->
                 BestCardRow(rank = index + 1, result = result)
@@ -168,7 +167,7 @@ private fun RewardCardRow(summary: CardRewardSummary, onEdit: () -> Unit) {
                 Text(
                     "${"%,.0f".format(summary.card.rewardBalance)} ${summary.card.rewardCurrency.name}",
                     style = MaterialTheme.typography.bodySmall,
-                    color = OnSurfaceSecondary
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
             Column(horizontalAlignment = Alignment.End) {
@@ -181,7 +180,7 @@ private fun RewardCardRow(summary: CardRewardSummary, onEdit: () -> Unit) {
                 Text(
                     "@${summary.card.rewardRate}%",
                     style = MaterialTheme.typography.bodySmall,
-                    color = OnSurfaceSecondary
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
             IconButton(onClick = onEdit, modifier = Modifier.size(32.dp)) {
@@ -197,7 +196,7 @@ private fun BestCardRow(rank: Int, result: BestCardResult) {
         1 -> Color(0xFFFFD700)
         2 -> Color(0xFFC0C0C0)
         3 -> Color(0xFFCD7F32)
-        else -> OnSurfaceSecondary
+        else -> MaterialTheme.colorScheme.onSurfaceVariant
     }
     Surface(
         shape = MaterialTheme.shapes.medium,
@@ -219,7 +218,7 @@ private fun BestCardRow(rank: Int, result: BestCardResult) {
             )
             Column(modifier = Modifier.weight(1f)) {
                 Text(result.card.nickname, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.SemiBold)
-                Text(result.card.bankName, style = MaterialTheme.typography.bodySmall, color = OnSurfaceSecondary)
+                Text(result.card.bankName, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
             Column(horizontalAlignment = Alignment.End) {
                 Text(
@@ -231,7 +230,7 @@ private fun BestCardRow(rank: Int, result: BestCardResult) {
                 Text(
                     "₹${"%,.1f".format(result.estimatedRewardPer100)} per ₹100",
                     style = MaterialTheme.typography.bodySmall,
-                    color = OnSurfaceSecondary
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
         }

@@ -56,6 +56,8 @@ Enable **Install from unknown sources** when prompted (one-time).
 
 ### 📊 Spend Visibility
 - Manual transaction entry: amount, merchant, category, date, notes
+- **SMS auto-import** — reads incoming bank SMS alerts and logs transactions automatically
+- **Inbox scan** — bulk-import up to 90 days of past transactions from the SMS inbox
 - Categories: Food · Travel · Fuel · Shopping · Entertainment · Utilities · Other
 - Search and filter transactions by merchant or category
 - Per-card or all-cards transaction list
@@ -64,13 +66,17 @@ Enable **Install from unknown sources** when prompted (one-time).
 - **Donut chart** — spend by category this month
 - **Bar chart** — month-on-month total spend (last 6 months)
 - **Utilisation bars** — current outstanding vs credit limit, warns visually at 30%
-- All charts rendered with custom Canvas — no third-party chart library
 
 ### ⭐ Rewards
 - Reward balance per card (manually updated)
 - Automatic INR conversion using each card's reward rate
 - Total reward value across all cards on home screen
 - **Best card suggester** — pick a spend category, see cards ranked by reward rate
+
+### 🎨 Appearance
+- **Light, Dark, and System-default themes** — switchable at any time from Settings
+- Dark mode uses true AMOLED black for battery efficiency
+- Light mode uses a soft indigo-tinted white with matching accent colours
 
 ### 📤 Data Portability
 - Export full backup as **JSON** → saved to Downloads
@@ -145,6 +151,7 @@ app/src/main/java/com/cardstack/app/
 │   ├── repository/     # CardRepository, SettingsRepository
 │   └── ExportImportManager.kt
 ├── di/                 # Hilt modules (DatabaseModule)
+├── sms/                # SmsParser, SmsReceiver (bank SMS auto-import)
 └── ui/
     ├── analytics/      # AnalyticsScreen + ViewModel
     ├── biometric/      # LockScreen, BiometricManager
@@ -154,7 +161,7 @@ app/src/main/java/com/cardstack/app/
     ├── navigation/     # NavGraph, BottomNav, Screen sealed class
     ├── rewards/        # RewardsScreen + ViewModel
     ├── settings/       # SettingsScreen + ViewModel
-    ├── theme/          # Color, Type, Theme (AMOLED dark)
+    ├── theme/          # Color, Type, Theme (light + dark + system)
     └── transactions/   # TransactionsScreen, AddTransactionSheet, ViewModel
 ```
 
@@ -162,11 +169,29 @@ app/src/main/java/com/cardstack/app/
 
 ## Design
 
-- **True black** (`#000000`) AMOLED background — easy on battery and eyes
+- **True black** (`#000000`) AMOLED dark mode — easy on battery and eyes
+- **Light mode** — soft `#F5F5FF` background with dark navy text and matching indigo accent
+- Theme choice (Light / Dark / System) persisted across sessions and applied instantly
 - **Accent**: deep indigo / electric blue (`#5C6BC0` family)
 - Cards rendered as gradient visuals at the standard 1.586:1 credit-card ratio
 - Material 3 dynamic typography throughout
 - All data stays on-device — no network calls, no analytics, no tracking
+
+---
+
+## SMS Auto-Import
+
+CardStack can read bank transaction SMS alerts and log spends automatically — no manual entry needed.
+
+**How it works:**
+1. Go to **Settings → SMS Auto-Import** and enable the toggle (grants `RECEIVE_SMS` permission)
+2. New bank SMS alerts are parsed in the background and matched to your cards by last-4 digits
+3. A notification confirms each auto-logged transaction
+4. Tap **Scan last 90 days** to bulk-import historical transactions from your SMS inbox
+
+**Supported patterns:** most Indian bank debit/spend SMS formats (HDFC, ICICI, SBI, Axis, Kotak, and others). The parser extracts amount, merchant, card digits, date, and guesses the spend category from the merchant name.
+
+> SMS are processed entirely on-device and never leave your phone.
 
 ---
 
@@ -198,6 +223,7 @@ Contributions are welcome! This is a personal project, but if you have ideas for
 - Widget for home screen due-date summary
 - Database encryption (SQLCipher integration)
 - Per-category reward rate overrides per card
+- Additional bank SMS patterns for the auto-import parser
 
 ### Guidelines
 

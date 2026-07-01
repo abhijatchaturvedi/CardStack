@@ -22,7 +22,6 @@ import com.cardstack.app.data.db.CardEntity
 import com.cardstack.app.ui.common.CardVisual
 import com.cardstack.app.ui.common.DuePill
 import com.cardstack.app.ui.theme.IndigoAccent
-import com.cardstack.app.ui.theme.OnSurfaceSecondary
 
 @Composable
 fun HomeScreen(
@@ -61,7 +60,7 @@ fun HomeScreen(
                     Text(
                         "Your Cards",
                         style = MaterialTheme.typography.titleMedium,
-                        color = OnSurfaceSecondary
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
                 items(state.cards, key = { it.id }) { card ->
@@ -112,7 +111,7 @@ private fun SummaryCard(label: String, value: String, modifier: Modifier = Modif
             modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            Text(label, style = MaterialTheme.typography.labelSmall, color = OnSurfaceSecondary)
+            Text(label, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             Text(value, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
         }
     }
@@ -152,12 +151,12 @@ private fun EmptyCardsHint() {
             Text(
                 "No cards yet",
                 style = MaterialTheme.typography.titleMedium,
-                color = OnSurfaceSecondary
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
             Text(
                 "Tap + to add your first card",
                 style = MaterialTheme.typography.bodySmall,
-                color = OnSurfaceSecondary.copy(alpha = 0.6f)
+                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
             )
         }
     }

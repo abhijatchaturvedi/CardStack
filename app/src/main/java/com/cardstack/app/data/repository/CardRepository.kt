@@ -29,4 +29,7 @@ class CardRepository @Inject constructor(private val dao: CardDao) {
     suspend fun getAllCards(): List<CardEntity> = dao.getAllCards()
     suspend fun getAllTransactions(): List<TransactionEntity> = dao.getAllTransactions()
     suspend fun getAllBalances(): List<BalanceEntity> = dao.getAllBalances()
+
+    suspend fun hasSimilarTransaction(cardId: Long, amount: Double, dateMillis: Long): Boolean =
+        dao.countSimilarTransactions(cardId, amount, dateMillis / 86_400_000L) > 0
 }

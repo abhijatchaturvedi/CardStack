@@ -19,6 +19,13 @@ val RedDue = Color(0xFFF44336)
 val OnSurfacePrimary = Color(0xFFE8E8F0)
 val OnSurfaceSecondary = Color(0xFF9E9EBD)
 
+// Light theme surfaces
+val BackgroundLight    = Color(0xFFF5F5FF)
+val SurfaceLight       = Color(0xFFFFFFFF)
+val SurfaceVariantLight = Color(0xFFE8E8F8)
+val OnSurfaceLight     = Color(0xFF1A1A2E)
+val OnSurfaceVariantLight = Color(0xFF4A4A6A)
+
 // Card gradient presets (start, end)
 val GradientIndigo = Pair(Color(0xFF5C6BC0), Color(0xFF283593))
 val GradientTeal = Pair(Color(0xFF00897B), Color(0xFF004D40))

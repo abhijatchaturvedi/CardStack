@@ -17,7 +17,6 @@ import com.cardstack.app.ui.common.DonutChart
 import com.cardstack.app.ui.common.DonutLegend
 import com.cardstack.app.ui.theme.AmberDue
 import com.cardstack.app.ui.theme.IndigoAccent
-import com.cardstack.app.ui.theme.OnSurfaceSecondary
 import com.cardstack.app.ui.theme.RedDue
 
 @Composable
@@ -96,7 +95,7 @@ fun AnalyticsScreen(viewModel: AnalyticsViewModel = hiltViewModel()) {
                                 Text(
                                     "$pct%  ·  ₹${"%,.0f".format(cu.outstanding)} / ₹${"%,.0f".format(cu.card.creditLimit)}",
                                     style = MaterialTheme.typography.bodySmall,
-                                    color = OnSurfaceSecondary
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                             }
                             LinearProgressIndicator(
@@ -128,7 +127,7 @@ private fun AnalyticsCard(title: String, content: @Composable ColumnScope.() -> 
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Text(title, style = MaterialTheme.typography.titleSmall, color = OnSurfaceSecondary)
+            Text(title, style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             content()
         }
     }
@@ -137,6 +136,6 @@ private fun AnalyticsCard(title: String, content: @Composable ColumnScope.() -> 
 @Composable
 private fun EmptyHint(text: String) {
     Box(modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp), contentAlignment = Alignment.Center) {
-        Text(text, style = MaterialTheme.typography.bodySmall, color = OnSurfaceSecondary)
+        Text(text, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
     }
 }

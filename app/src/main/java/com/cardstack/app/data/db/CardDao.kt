@@ -53,4 +53,11 @@ interface CardDao {
 
     @Query("SELECT * FROM balances")
     suspend fun getAllBalances(): List<BalanceEntity>
+
+    @Query("""
+        SELECT COUNT(*) FROM transactions
+        WHERE cardId = :cardId AND amount = :amount
+        AND date / 86400000 = :dayBucket
+    """)
+    suspend fun countSimilarTransactions(cardId: Long, amount: Double, dayBucket: Long): Int
 }

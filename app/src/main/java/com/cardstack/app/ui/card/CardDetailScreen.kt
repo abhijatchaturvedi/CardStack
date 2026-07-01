@@ -18,7 +18,6 @@ import com.cardstack.app.ui.common.CardVisual
 import com.cardstack.app.ui.common.DuePill
 import com.cardstack.app.ui.theme.AmberDue
 import com.cardstack.app.ui.theme.IndigoAccent
-import com.cardstack.app.ui.theme.OnSurfaceSecondary
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -192,7 +191,7 @@ private fun InfoTile(label: String, value: String, modifier: Modifier = Modifier
         shape = MaterialTheme.shapes.medium
     ) {
         Column(modifier = Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-            Text(label, style = MaterialTheme.typography.labelSmall, color = OnSurfaceSecondary)
+            Text(label, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             Text(value, style = MaterialTheme.typography.titleSmall)
         }
     }
@@ -208,8 +207,8 @@ private fun UtilisationBar(utilisation: Float, limit: Double) {
     }
     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-            Text("Utilisation $pct%", style = MaterialTheme.typography.labelSmall, color = OnSurfaceSecondary)
-            Text("Limit ₹${"%,.0f".format(limit)}", style = MaterialTheme.typography.labelSmall, color = OnSurfaceSecondary)
+            Text("Utilisation $pct%", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text("Limit ₹${"%,.0f".format(limit)}", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
         LinearProgressIndicator(
             progress = { utilisation.coerceIn(0f, 1f) },
